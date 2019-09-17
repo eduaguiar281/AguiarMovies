@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AguiarMovies.Views.UpcomingView"   
+             xmlns:behaviors="clr-namespace:AguiarMovies.Behaviors;assembly=Movies"
+             xmlns:templates="clr-namespace:AguiarMovies.Views.Templates;assembly=Movies"
+             xmlns:controls="clr-namespace:AguiarMovies.Controls;assembly=Movies"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:extended="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" 
+             BackgroundColor="{StaticResource ToolbarColor}"
+             Title="Upcoming">
+    <ContentPage.Resources>
+        <Style x:Key="VoteAverageStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="12, 0, 24, 0" />
+        </Style>
+
+        <Style x:Key="IsBusyLoadMoreStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
+            <Setter Property="FontSize" Value="Small" />
+            <Setter Property="Margin" Value="10, 0, 10, 0" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="{StaticResource BackgroundColor}">
+            <ListView
+                IsVisible="{Binding IsBusy, Converter={StaticResource InverseBoolConverter}}"
+		        ItemsSource="{Binding Upcoming}" 
+		        SeparatorVisibility="None"
+		        BackgroundColor="{StaticResource BackgroundColor}"
+		        HasUnevenRows="false"               
+                RowHeight="180"
+                behaviors:ItemTappedCommandListView.ItemTappedCommand="{Binding MovieDetailCommand}">
+                <ListView.Behaviors>
+                    <extended:InfiniteScrollBehavior IsLoadingMore="{Binding IsLoadMorebusy}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout HorizontalOptions="Start" VerticalOptions="FillAndExpand"
+                                             Margin="10,0,0,0">
+                                    <!--<Image Source="{Binding PosterPath, Converter={StaticResource MovieImageConverter}}"
+                                        Aspect="AspectFit"
+                                        WidthRequest="100" 
+				                        HeightRequest="100"/>-->
+
+                                    <ffimageloading:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
+                                                DownsampleToViewSize="true"
+                                                Aspect="AspectFit" HeightRequest="100" WidthRequest="100"
+                                                Source="{Binding PosterPath, Converter={StaticResource MovieImageConverter}}"
+                                                LoadingPlaceholder="movies_movie.png"
+                                                ErrorPlaceholder="movies_icon.png"/>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="StartAndExpand"
+                                             VerticalOptions="StartAndExpand" 
+				                             Padding="20"
+				                             Spacing="5">
+                                    <Label Text="{Binding Title}" 
+					                       FontAttributes="Bold" 
+					                       FontSize="18" 
+					                       TextColor="{StaticResource WhiteColor}" />
+                                    <Label Text="{Binding ReleaseDate, StringFormat='{0:MMMM d, yyyy}'}}"
+					                       FontSize="12" 
+					                       TextColor="{StaticResource AccentColor}"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label 
+                                           Text="{Binding VoteAverage}"
+                                           Style="{StaticResource VoteAverageStyle}"/>
+                                        <controls:RatingStars
+                                                 Rating="{Binding VoteAverage}"
+                                                 Precision="Half"
+                                                 HeightRequest="20"
+                                                 WidthRequest="100"/>
+
+                                    </StackLayout>
+                                        
+                                </StackLayout>
+                            </StackLayout>
+                            
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">
+                        <ActivityIndicator IsRunning="{Binding IsLoadMorebusy}" IsVisible="{Binding IsLoadMorebusy}"
+                                           Color="{StaticResource AccentColor}"
+                                           BackgroundColor="{StaticResource BackgroundColor}"/>
+                        <Label Text="Carregando..."  HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsLoadMorebusy}" Style="{StaticResource IsBusyLoadMoreStyle}"/>
+                    </StackLayout>
+                </ListView.Footer>
+
+            </ListView>
+            <ActivityIndicator
+                IsVisible="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}"
+                Color="{StaticResource AccentColor}"
+                BackgroundColor="{StaticResource BackgroundColor}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsEmpty}" >
+                <Image Source="movies_icon.png" VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand"
+                       HeightRequest="300"
+                       WidthRequest="300"/>
+                <Label Text="Filmes não foi encontrado!" Style="{StaticResource VoteAverageStyle}"></Label>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

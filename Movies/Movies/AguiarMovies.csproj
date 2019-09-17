@@ -1,0 +1,155 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-win+net45+wp8+win81+wpa8;portable-net45+win8</PackageTargetFallback>
+    <AssemblyName>Movies</AssemblyName>
+    <RootNamespace>Movies</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Models\TVShow\**" />
+    <Compile Remove="Services\People\**" />
+    <Compile Remove="Services\TVShow\**" />
+    <EmbeddedResource Remove="Models\TVShow\**" />
+    <EmbeddedResource Remove="Services\People\**" />
+    <EmbeddedResource Remove="Services\TVShow\**" />
+    <None Remove="Models\TVShow\**" />
+    <None Remove="Services\People\**" />
+    <None Remove="Services\TVShow\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Models\Country.cs" />
+    <Compile Remove="Models\Language.cs" />
+    <Compile Remove="Models\Movie\MovieCastMember.cs" />
+    <Compile Remove="Models\Movie\MovieCredit.cs" />
+    <Compile Remove="Models\Movie\MovieCrewMember.cs" />
+    <Compile Remove="Models\Movie\MovieVideo.cs" />
+    <Compile Remove="Models\Movie\MovieVideoItem.cs" />
+    <Compile Remove="Models\People\Person.cs" />
+    <Compile Remove="Models\People\PersonImage.cs" />
+    <Compile Remove="Models\People\Profile.cs" />
+    <Compile Remove="Models\ProfileParameter.cs" />
+    <Compile Remove="ViewModels\GalleryViewModel.cs" />
+    <Compile Remove="ViewModels\HomepageViewModel.cs" />
+    <Compile Remove="ViewModels\HomeViewModel.cs" />
+    <Compile Remove="ViewModels\MoviesViewModel.cs" />
+    <Compile Remove="ViewModels\PeopleViewModel.cs" />
+    <Compile Remove="ViewModels\ShowsViewModel.cs" />
+    <Compile Remove="Views\GalleryView.xaml.cs" />
+    <Compile Remove="Views\HomepageView.xaml.cs" />
+    <Compile Remove="Views\HomeView.xaml.cs" />
+    <Compile Remove="Views\MoviesView.xaml.cs" />
+    <Compile Remove="Views\PeopleView.xaml.cs" />
+    <Compile Remove="Views\ShowsView.xaml.cs" />
+    <Compile Remove="Views\Templates\CastingItemTemplate.xaml.cs" />
+    <Compile Remove="Views\Templates\GalleryItemTemplate.xaml.cs" />
+    <Compile Remove="Views\Templates\TimelineItemTemplate.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\GalleryView.xaml" />
+    <EmbeddedResource Remove="Views\HomepageView.xaml" />
+    <EmbeddedResource Remove="Views\HomeView.xaml" />
+    <EmbeddedResource Remove="Views\MoviesView.xaml" />
+    <EmbeddedResource Remove="Views\PeopleView.xaml" />
+    <EmbeddedResource Remove="Views\ShowsView.xaml" />
+    <EmbeddedResource Remove="Views\Templates\CastingItemTemplate.xaml" />
+    <EmbeddedResource Remove="Views\Templates\GalleryItemTemplate.xaml" />
+    <EmbeddedResource Remove="Views\Templates\TimelineItemTemplate.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Images\rating_empty.png" />
+    <None Remove="Images\rating_full.png" />
+    <None Remove="Images\rating_half.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\rating_empty.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\rating_full.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\rating_half.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.778463" />
+    <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="3.1.0.697729" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\CustomNavigationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\DetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\GalleryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\HomepageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\HomeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\MenuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\MoviesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\PeopleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ShowsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SplashView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Templates\CastingItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Templates\GalleryItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Templates\HomeMainItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Templates\ImageItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Templates\MenuItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Templates\MovieBannerItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Templates\MovieItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Templates\ShowBannerItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Templates\ShowItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Templates\TimelineItemTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\UpcomingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+</Project>
